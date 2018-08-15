@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:4.8.2
+      - image: circleci/node:8.9.1
     steps:
       - checkout
       - run:
@@ -31,3 +31,9 @@ jobs:
           prefix: coverage
       - store_test_results:
           path: test-results
+      - run:
+          name: Authenticate with registry
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/repo/.npmrc
+      - run:
+          name: Publish package
+          command: npm publish
