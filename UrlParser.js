@@ -68,7 +68,7 @@ exports.hasMatchingStub = function(receivedUrlPartsLinkedList, getRequestStubs){
 
 
     for(var counter=0; counter < getRequestStubs.length; counter++){
-        if (recursiveUrlLinkedListSearch(receivedUrlPartsLinkedList, getRequestStubs[counter].getUrl()) == true){
+        if (recursiveUrlLinkedListSearch(receivedUrlPartsLinkedList, getRequestStubs[counter].url) == true){
             return getRequestStubs[counter];
         } else{
             continue;

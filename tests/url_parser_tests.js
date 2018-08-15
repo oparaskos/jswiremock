@@ -6,8 +6,8 @@ var assert = require('assert');
 var chai = require('chai');
 chai.should();
 
-var jswiremocklib, stubFor, get, urlEqualTo, a_response;
-jswiremocklib = require('../jswiremock'), stubFor = jswiremocklib.stubFor, get = jswiremocklib.get, post = jswiremocklib.post, urlEqualTo = jswiremocklib.urlEqualTo, a_response = jswiremocklib.a_response;
+var jswiremocklib, stubFor, get, urlEqualTo, aResponse;
+jswiremocklib = require('../jswiremock'), stubFor = jswiremocklib.stubFor, get = jswiremocklib.get, post = jswiremocklib.post, urlEqualTo = jswiremocklib.urlEqualTo, aResponse = jswiremocklib.aResponse;
 
 var urlParser = require('../UrlParser');
 
@@ -74,43 +74,43 @@ describe('urlParser library', function() {
     describe('recursive url link search function', function() {
         before(function() {
             var mock_request_1 = get(urlEqualTo("/1"))
-                .willReturn(a_response()
+                .willReturn(aResponse()
                     .withStatus(200)
                     .withHeader({"Content-Type": "application/json"})
                     .withBody("[{\"status\":\"success\"}]"));
 
             var mock_request_2 = get(urlEqualTo("/5/:test/delete"))
-                .willReturn(a_response()
+                .willReturn(aResponse()
                     .withStatus(200)
                     .withHeader({"Content-Type": "application/json"})
                     .withBody("[{\"status\":\"success\"}]"));
 
             var mock_request_3 = get(urlEqualTo("/account/:varying_var/delete/"))
-                .willReturn(a_response()
+                .willReturn(aResponse()
                     .withStatus(200)
                     .withHeader({"Content-Type": "application/json"})
                     .withBody("[{\"status\":\"success\"}]"));
 
             var mock_request_4 = get(urlEqualTo("/:varying_var/delete/"))
-                .willReturn(a_response()
+                .willReturn(aResponse()
                     .withStatus(200)
                     .withHeader({"Content-Type": "application/json"})
                     .withBody("[{\"status\":\"success\"}]"));
 
             var mock_request_5 = get(urlEqualTo("/delete/:varying_var/"))
-                .willReturn(a_response()
+                .willReturn(aResponse()
                     .withStatus(200)
                     .withHeader({"Content-Type": "application/json"})
                     .withBody("[{\"status\":\"success\"}]"));
 
             var mock_request_7 = get(urlEqualTo("/delete/:wtv/hello?meansit=:var"))
-                .willReturn(a_response()
+                .willReturn(aResponse()
                     .withStatus(200)
                     .withHeader({"Content-Type": "application/json"})
                     .withBody("[{\"status\":\"success\"}]"));
 
             var mock_request_8 = post(urlEqualTo("/login"), {username: "captainkirk", password: "enterprise"})
-                .willReturn(a_response()
+                .willReturn(aResponse()
                     .withStatus(200)
                     .withHeader({"Content-Type": "application/json"})
                     .withBody("[{\"status\":\"success\"}]"));

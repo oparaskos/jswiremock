@@ -3,19 +3,19 @@
  * Integration test to be run manually for now.
  */
 
-var jswiremocklib, jswiremock, stubFor, get, post, urlEqualTo, a_response;
-jswiremocklib = require('../jswiremock'), jswiremock = jswiremocklib.jswiremock, stubFor = jswiremocklib.stubFor, get = jswiremocklib.get, post = jswiremocklib.post, urlEqualTo = jswiremocklib.urlEqualTo, a_response = jswiremocklib.a_response, stopJSWireMock = jswiremocklib.stopJSWireMock;
+var jswiremocklib, jswiremock, stubFor, get, post, urlEqualTo, aResponse;
+jswiremocklib = require('../jswiremock'), jswiremock = jswiremocklib.jswiremock, stubFor = jswiremocklib.stubFor, get = jswiremocklib.get, post = jswiremocklib.post, urlEqualTo = jswiremocklib.urlEqualTo, aResponse = jswiremocklib.aResponse, stopJSWireMock = jswiremocklib.stopJSWireMock;
 
 var jswiremock = new jswiremock(5001); //port
 
 stubFor(jswiremock, get(urlEqualTo("/account/:varying_var/delete/"))
-    .willReturn(a_response()
+    .willReturn(aResponse()
         .withStatus(200)
         .withHeader({"Content-Type": "application/json"})
         .withBody("[{\"status\":\"success\"}]")));
 
 stubFor(jswiremock, post(urlEqualTo("/login"), {username: "captainkirk", password: "enterprise"})
-    .willReturn(a_response()
+    .willReturn(aResponse()
         .withStatus(200)
         .withHeader({})
         .withBody("")));
