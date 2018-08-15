@@ -1,7 +1,3 @@
-/**
- * Created by jlidder on 7/17/15.
- */
-var http = require('http');
 var assert = require('assert');
 var chai = require('chai');
 chai.should();

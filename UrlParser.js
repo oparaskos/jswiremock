@@ -1,7 +1,3 @@
-/**
- * Created by jlidder on 15-07-18.
- */
-
 function UrlNode(data){
     this.append = function(next){
         this.next = next;

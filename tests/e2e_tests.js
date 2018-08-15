@@ -1,8 +1,3 @@
-/**
- * Created by jlidder on 4/04/17.
- * Integration test to be run manually for now.
- */
-
 var jswiremocklib, jswiremock, stubFor, get, post, urlEqualTo, aResponse;
 jswiremocklib = require('../jswiremock'), jswiremock = jswiremocklib.jswiremock, stubFor = jswiremocklib.stubFor, get = jswiremocklib.get, post = jswiremocklib.post, urlEqualTo = jswiremocklib.urlEqualTo, aResponse = jswiremocklib.aResponse, stopJSWireMock = jswiremocklib.stopJSWireMock;
 
