@@ -31,4 +31,4 @@ node_modules
 project.sublime-project
 .nyc_output/
 coverage/
-test-results.xml
+test-results/

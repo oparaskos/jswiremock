@@ -3,7 +3,7 @@
   "version": "0.3.5",
   "description": "A library used for stubbing and mocking web services.",
   "scripts": {
-    "test": "mocha tests/* --reporter mocha-junit-reporter",
+    "test": "mocha tests/* --reporter mocha-junit-reporter --reporter-options mochaFile=./test-results/jswiremock/results.xml",
     "watch:test": "npm run test -- --watch",
     "cover": "nyc npm run test",
     "report": "nyc report --reporter=lcov --report-dir=coverage",
