@@ -19,10 +19,10 @@ jobs:
             - ./node_modules
       - run:
           name: test
-          command: npm test
-      - run:
-          name: code-coverage
           command: 'npm run cover'
+      - run:
+          name: report-coverage
+          command: 'npm run cover:report'
       - store_artifacts:
           path: test-results
           prefix: tests

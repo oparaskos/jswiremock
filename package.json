@@ -6,7 +6,7 @@
     "test": "mocha tests/* ",
     "watch:test": "npm run test -- --watch",
     "cover": "nyc npm run test -- --reporter mocha-junit-reporter --reporter-options mochaFile=./test-results/jswiremock/results.xml",
-    "report": "nyc report --reporter=lcov --report-dir=coverage"
+    "cover:report": "nyc report --reporter=lcov --report-dir=coverage"
   },
   "private": false,
   "dependencies": {
