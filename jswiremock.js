@@ -37,10 +37,12 @@ exports.jswiremock = function (port) {
     };
 
     app.use('/*', function (req, res, next) {
-        res.header('Access-Control-Allow-Origin', req.headers.origin);
-        res.header('Access-Control-Allow-Credentials', 'true');
-        res.header('Access-Control-Allow-Methods', METHODS.join(', '));
-        res.header('Access-Control-Allow-Headers', req.headers['access-control-request-headers']);
+        if (!res.headersSent) {
+            res.header('Access-Control-Allow-Origin', req.headers.origin);
+            res.header('Access-Control-Allow-Credentials', 'true');
+            res.header('Access-Control-Allow-Methods', METHODS.join(', '));
+            res.header('Access-Control-Allow-Headers', req.headers['access-control-request-headers']);
+        }
         next();
     });
 
@@ -60,6 +62,7 @@ exports.jswiremock = function (port) {
                             res.status(404);
                             res.send("Does not exist, "
                                 + "There are stubs matching this resource but the body does not match");
+                            return;
                         }
                     }
                 }
@@ -74,6 +77,7 @@ exports.jswiremock = function (port) {
                 res.status(404);
                 res.send("Does not exist, "
                     + "There is no stub matching this resource");
+                return;
             }
         }
     }
