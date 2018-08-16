@@ -1,6 +1,6 @@
 {
   "name": "oparaskos-jswiremock",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "A library used for stubbing and mocking web services.",
   "scripts": {
     "test": "mocha tests/* ",

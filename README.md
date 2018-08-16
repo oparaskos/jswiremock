@@ -19,7 +19,7 @@ Jswiremock is a flexible http api mocking library.
 ## How to use it?
 
 ```javascript
-var jswiremocklib= require('../jswiremock');
+var jswiremocklib= require('oparaskos-jswiremock');
 var jswiremock = jswiremocklib.jswiremock;
 var stubFor = jswiremocklib.stubFor;
 var get = jswiremocklib.get;
@@ -53,7 +53,7 @@ request({
     method: "GET"
 }, function(error, response, body) {
     assert.strictEqual(response.statusCode, 200, 'Status code matches withStatus');
-    assert.strictEqual(body, "{\"status\":\"success\"}", 'Body matches withBody);
+    assert.strictEqual(body, "{\"status\":\"success\"}", 'Body matches withBody');
     mockServer.stopJSWireMock();
 });
 ```
