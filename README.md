@@ -6,31 +6,37 @@ Miss WireMock in Java? This is the Nodejs sibling to WireMock. At least that is 
 
 Jswiremock is a flexible http api mocking library.
 
-## Right now in v0.3:
+## Right now in v0.4.x:
 
-- Simple GET and POST requests can be mocked.
+- Simple requests can be mocked for GET, POST, PUT, PATCH, DELETE and OPTIONS.
 - Fixed and Dynamic URL stubs (ex: /account/:varying_var/get/)
 - Fixed and Dynamic Query parameters (ex: /account/234234?active=:var&cool=true
+- Request body exact matching
 
 ## Installation
-     $ npm install jswiremock
-
+     $ npm i -s oparaskos-jswiremock
 
 ## How to use it?
 
 ```javascript
-var jswiremocklib, jswiremock, stubFor, get, post, urlEqualTo, aResponse;
-jswiremocklib = require('../jswiremock'), jswiremock = jswiremocklib.jswiremock, stubFor = jswiremocklib.stubFor, get = jswiremocklib.get, post = jswiremocklib.post, urlEqualTo = jswiremocklib.urlEqualTo, aResponse = jswiremocklib.aResponse, stopJSWireMock = jswiremocklib.stopJSWireMock;
+var jswiremocklib= require('../jswiremock');
+var jswiremock = jswiremocklib.jswiremock;
+var stubFor = jswiremocklib.stubFor;
+var get = jswiremocklib.get;
+var post = jswiremocklib.post;
+var urlEqualTo = jswiremocklib.urlEqualTo;
+var aResponse = jswiremocklib.aResponse;
+var stopJSWireMock = jswiremocklib.stopJSWireMock;
 
-var jswiremock = new jswiremock(5001); //port
+var mockServer = new jswiremock(5001); //port
 
-stubFor(jswiremock, get(urlEqualTo("/account/:varying_var/get/"))
+stubFor(mockServer, get(urlEqualTo("/account/:varying_var"))
     .willReturn(aResponse()
         .withStatus(200)
         .withHeader({"Content-Type": "application/json"})
-        .withBody("[{\"status\":\"success\"}]")));
+        .withBody("{\"status\":\"success\"}")));
 
-stubFor(jswiremock, post(urlEqualTo("/login"), {username: "captainkirk", password: "enterprise"})
+stubFor(mockServer, post(urlEqualTo("/login"), {username: "captainkirk", password: "enterprise"})
     .willReturn(aResponse()
         .withStatus(200)
         .withHeader({})
@@ -43,11 +49,12 @@ var request = require("request");
 var assert = require('assert');
 
 request({
-    uri: "http://localhost:5001/account/4444321/get/",
+    uri: "http://localhost:5001/account/4444321",
     method: "GET"
 }, function(error, response, body) {
-    assert.strictEqual(body, "[{\"status\":\"success\"}]", 'get response is not the same.');
-    jswiremock.stopJSWireMock();
+    assert.strictEqual(response.statusCode, 200, 'Status code matches withStatus');
+    assert.strictEqual(body, "{\"status\":\"success\"}", 'Body matches withBody);
+    mockServer.stopJSWireMock();
 });
 ```
 
